@@ -1,3 +1,5 @@
+
+
 class Stack:
 
     def __init__(self):
@@ -5,24 +7,22 @@ class Stack:
 
 
     def push(self, data):
-        # self._dataList.append(data)
         self._dataList = [data] + self._dataList
 
 
-    def pop(self, data):
+    def pop(self):
         if len(self._dataList) == 0:
-            return None
+            return
 
-        first = data[0]
+        first = self._dataList[0]
         self._dataList.remove(first)
         return first
 
-
     def get_count(self):
-        pass
+        return len(self._dataList)
 
     def peek(self): 
-        pass
+        return self._dataList[0]
 
     def __iter__(self):
-        pass
+        return iter(self._dataList)
