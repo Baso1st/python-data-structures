@@ -16,7 +16,7 @@ class LinkedList:
         self._count = 0
 
     def get_count(self):
-        """Returns the number of nodes in the linkedlist."""
+        """Returns the number of nodes in the linkedlist"""
         return self._count
 
     def add_first(self, data):
