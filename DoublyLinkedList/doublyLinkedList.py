@@ -1,4 +1,7 @@
 
+from itertools import count
+
+
 class DNode:
     def __init__(self, data):
         self.data = data
@@ -40,20 +43,69 @@ class DoublyLinkedList:
 
 
     def add_tail(self, data):
-        pass
+        newNode = DNode(data)
+
+        if self._count == 0:
+            self._head = self._tail = newNode
+        else:
+            self._tail.next = newNode
+            newNode.previous = self._tail
+            self._tail = newNode
+        
+        self._count += 1
 
 
     def remove_head(self):
-        pass
+        if self._count == 0:
+            return
+
+        if self._count == 1:
+            self._head = self._tail = None
+        else:
+            self._head = self._head.next
+            self._head.previous = None
+        
+        self._count -= 1
+        
 
 
     def remove_tail(self):
-        pass
+        if self._count == 0: 
+            return
 
+        if self._count == 1:
+            self._head = self._tail = None
+        else:
+            self._tail = self._tail.previous
+            self._tail.next = None
+
+        self._count -= 1
 
     def remove(self, data):
-        pass
+        if self._count == 0:
+            return
+
+        currentNode = self._head
+
+        while currentNode is not None:
+            if currentNode.data == data:
+                break
+            currentNode = currentNode.next
+        
+        if currentNode is not None:
+            previousNode = currentNode.previous
+            nextNode = currentNode.next
+            previousNode.next = nextNode
+            if nextNode is not None:
+                nextNode.previous = previousNode
+
+            self._count -= 1
+        
+
 
 
     def __iter__(self):
-        pass
+        currentNode = self._head
+        while currentNode is not None:
+            yield currentNode.data
+            currentNode = currentNode.next
