@@ -1,7 +1,6 @@
 
 from itertools import count
 
-
 class DNode:
     def __init__(self, data):
         self.data = data
@@ -21,11 +20,13 @@ class DoublyLinkedList:
 
 
     def get_head(self):
-        return self._head
+        if self._head is not None:
+            return self._head.data
 
 
     def get_tail(self):
-        return self._tail
+        if self._tail is not None:
+            return self._tail.data
 
 
     def add_head(self, data):
