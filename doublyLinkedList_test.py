@@ -15,7 +15,7 @@ dlist.add_head('Forth')
 # dlist.remove_head()
 # dlist.remove_head()
 
-dlist.remove('Second')
+# dlist.remove('Second')
 
 # print(dlist._head.data)
 # print(dlist._tail.data)
