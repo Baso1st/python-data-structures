@@ -45,11 +45,11 @@ bTree.add(300)
 # bTree.post_order_traversal(printNodeData)
 
 
-bTree.remove(25)
+# bTree.remove(50)
 
-for data in bTree:
-    print(data)
+# for data in bTree:
+#     print(data)
 
-# (node, parent) = bTree.findWithParent(10)
+(node, parent) = bTree.findWithParent(100)
 # print(bool(parent) ^ bool(node))
-# print(None if parent is None else parent.data, node.data)
+print(None if parent is None else parent.data, node.data)

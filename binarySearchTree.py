@@ -1,7 +1,4 @@
 
-from logging import root
-from turtle import right
-
 
 class TreeNode:
     def __init__(self, data):
@@ -128,25 +125,17 @@ class BinarySearchTree:
             left_child_parent.left = left_most_child.right
 
         left_most_child.left = node.left
-        left_most_child.right = node.right
 
-        if node.data < parent.data:
-            parent.left = left_most_child
+        if left_most_child != node.right:
+            left_most_child.right = node.right
+
+        if parent is not None:
+            if node.data < parent.data:
+                parent.left = left_most_child
+            else:
+                parent.right = left_most_child
         else:
-            parent.right = left_most_child
-
-        # if left_most_child == node.right:
-        #     if node.data < parent.data:
-        #         parent.left = node.right
-        #     else:
-        #         parent.righ = node.right
-        # else:
-        #     left_child_parent.left = node.right
-        #     if node.data < parent.data:
-        #         parent.left = node.right
-        #     else:
-        #         parent.righ = node.right
-
+            self.root = left_most_child
 
     def findWithParent(self, data):
         """Returns a tuple (node, node's parent) for the node of the data in the parameter"""
