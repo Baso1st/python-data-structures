@@ -86,19 +86,24 @@ class DoublyLinkedList:
         if self._count == 0:
             return
 
-        currentNode = self._head
+        if self._head.data == data:
+            self.remove_head()
+        elif self._tail.data == data:
+            self.remove_tail()
+        else: 
+            currentNode = self._head
 
-        while currentNode is not None:
-            if currentNode.data == data:
-                break
-            currentNode = currentNode.next
-        
-        if currentNode is not None:
-            previousNode = currentNode.previous
-            nextNode = currentNode.next
-            previousNode.next = nextNode
-            if nextNode is not None:
-                nextNode.previous = previousNode
+            while currentNode is not None:
+                if currentNode.data == data:
+                    break
+                currentNode = currentNode.next
+            
+            if currentNode is not None:
+                previousNode = currentNode.previous
+                nextNode = currentNode.next
+                previousNode.next = nextNode
+                if nextNode is not None:
+                    nextNode.previous = previousNode
 
             self._count -= 1
         

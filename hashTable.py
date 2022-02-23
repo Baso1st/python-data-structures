@@ -9,15 +9,15 @@ class HashNode:
 
 class HashTable:
     def __init__(self):
-        self._values = [DoublyLinkedList()] * 5
+        self._values = [DoublyLinkedList() for x in range(5)]
         self._fill_factor = 0.75
         self._count = 0
+        pass
 
 
     def __iter__(self):
         for linkedList in self._values:
-            for listNode in linkedList:
-                hashNode = listNode.data
+            for hashNode in linkedList:
                 yield hashNode
 
     
@@ -25,8 +25,7 @@ class HashTable:
         index = self._get_index(key)
         linkedList = self._values[index]
 
-        for listNode in linkedList:
-            hashNode = listNode.data
+        for hashNode in linkedList:
             if hashNode.key == key:
                 return hashNode.value
 
@@ -36,7 +35,7 @@ class HashTable:
 
 
     def _get_index(self, key):
-        return hash(key) % len(self._values)
+        return (hash(key) % len(self._values))
     
     
     def add(self, key, value):
@@ -55,12 +54,12 @@ class HashTable:
     
     def _extend(self):
         oldArray = self._values
-        self._values = [DoublyLinkedList()] * (len(oldArray) * 2)
-
+        self._values = [DoublyLinkedList() for x in range(len(oldArray) * 2)]
+        self._count = 0
+        
         for linkedList in oldArray:
             if linkedList.get_count() > 0:
-                for listNode in linkedList:
-                    hashNode = listNode.data
+                for hashNode in linkedList:
                     self.add(hashNode.key, hashNode.value)
 
 
@@ -68,21 +67,20 @@ class HashTable:
         index = self._get_index(key)
         linkedList = self._values[index]
         
-        theListNodeToRemove = None
+        nodeToRemove = None
         notFound = True
 
-        if linkedList.get_count() > 0:
-            for listNode in linkedList:
-                hashNode = listNode.data
-                if hashNode.key == key:
-                    theListNodeToRemove = listNode
-                    notFound = False
-                    break
-            linkedList.remove(theListNodeToRemove)
-            self._count -= 1
-
+        for hashNode in linkedList:
+            if hashNode.key == key:
+                nodeToRemove = hashNode
+                notFound = False
+                break
+        
         if notFound:
             raise ValueError("A node with the supplied key was not found")
+        else:
+            linkedList.remove(nodeToRemove)
+            self._count -= 1
 
 
 
@@ -95,8 +93,7 @@ class HashTable:
         index = self._get_index(key)
         linkedList = self._values[index]
         if linkedList.get_count() > 0:
-            for listNode in linkedList:
-                    hashNode = listNode.data
+            for hashNode in linkedList:
                     if hashNode.key == key:
                         return True
         return False
