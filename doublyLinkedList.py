@@ -108,8 +108,6 @@ class DoublyLinkedList:
             self._count -= 1
         
 
-
-
     def __iter__(self):
         currentNode = self._head
         while currentNode is not None:

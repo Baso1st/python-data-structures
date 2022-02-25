@@ -97,7 +97,3 @@ class HashTable:
                     if hashNode.key == key:
                         return True
         return False
-
-    
-
-
