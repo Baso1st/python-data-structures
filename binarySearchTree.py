@@ -1,5 +1,4 @@
 
-
 class TreeNode:
     def __init__(self, data):
         self.data = data
@@ -31,11 +30,6 @@ class BinarySearchTree:
                 parentNode.left = TreeNode(data)
             else:
                 parentNode.right = TreeNode(data)
-
-
-
-    def remove(self, data):
-        pass
 
 
     def pre_order_traversal(self, action):
